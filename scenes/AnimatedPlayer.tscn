@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_duck.png" type="Texture" id=1]
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_walk2.png" type="Texture" id=2]
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_walk1.png" type="Texture" id=3]
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_idle.png" type="Texture" id=4]
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_jump.png" type="Texture" id=5]
+[ext_resource path="res://assets/kenney_platformercharacters/PNG/Female/Poses/female_slide.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Crouch",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "Slide",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47, 55.5 )
+
+[node name="AnimatedPlayer" type="KinematicBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 2 )
