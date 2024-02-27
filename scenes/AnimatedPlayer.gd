@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 export (int) var speed = 400
 export (int) var GRAVITY = 1200
 export (int) var jump_speed = -600
@@ -15,23 +16,30 @@ var double_tap_left = false
 func get_input():
 	velocity.x = 0
 	if is_on_floor() and Input.is_action_just_pressed('up'):
+		$AnimatedSprite.play("Jump")
 		velocity.y = jump_speed
 		double_jump = true
-	if !is_on_floor() and Input.is_action_just_pressed('up'):
+	if !is_on_floor() and Input.is_action_just_pressed('up') and double_jump == true:
+		$AnimatedSprite.play("Jump")
 		velocity.y = jump_speed
 		double_jump = false
 		
 	if Input.is_action_pressed('right'):
-		$Sprite.flip_h = false
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.play("Walk")
 		velocity.x += speed
+	
 	if Input.is_action_pressed('left'):
-		$Sprite.flip_h = true
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.play("Walk")
 		velocity.x -= speed
 		
 	if Input.is_action_pressed("crouch"):
+		$AnimatedSprite.play("Crouch")
 		speed = 50
 		jump_speed = 0
 	else:
+		$AnimatedSprite.stop()
 		speed = 400
 		jump_speed = -600
 	
@@ -51,12 +59,14 @@ func _process(delta):
 			dashing = true
 			
 	if Input.is_action_just_released('left'):
+		$AnimatedSprite.stop()
 		if dashing == true:
 			dashing = false
 		double_tap_left = true
 		$Timer.start()
 		
 	if Input.is_action_just_released('right'):
+		$AnimatedSprite.stop()
 		if dashing == true:
 			dashing = false
 		double_tap_right = true
