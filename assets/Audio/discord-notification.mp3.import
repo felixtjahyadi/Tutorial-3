@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/discord-notification.mp3-a5a3682a81b26e9c6ca1e64030b30600.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/discord-notification.mp3"
+dest_files=[ "res://.import/discord-notification.mp3-a5a3682a81b26e9c6ca1e64030b30600.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
